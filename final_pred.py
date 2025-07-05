@@ -25,12 +25,12 @@ class Application:
 
     def __init__(self):
         self.vs = cv2.VideoCapture(0)
-        self.current_image = None
-        self.model = load_model('cnn8grps_rad1_model.h5')
+        self.current_image = None #webcam initiate
+        self.model = load_model('cnn8grps_rad1_model.h5') #load pretrained model 
         self.speak_engine=pyttsx3.init()
         self.speak_engine.setProperty("rate",100)
         voices=self.speak_engine.getProperty("voices")
-        self.speak_engine.setProperty("voice",voices[0].id)
+        self.speak_engine.setProperty("voice",voices[0].id) #text to speech 
 
         self.ct = {}
         self.ct['blank'] = 0
@@ -57,21 +57,21 @@ class Application:
         self.panel = tk.Label(self.root)
         self.panel.place(x=100, y=3, width=480, height=640)
 
-        self.panel2 = tk.Label(self.root)  # initialize image panel
+        self.panel2 = tk.Label(self.root) 
         self.panel2.place(x=700, y=115, width=400, height=400)
 
         self.T = tk.Label(self.root)
         self.T.place(x=60, y=5)
         self.T.config(text="Sign Language To Text Conversion", font=("Courier", 30, "bold"))
 
-        self.panel3 = tk.Label(self.root)  # Current Symbol
+        self.panel3 = tk.Label(self.root) 
         self.panel3.place(x=280, y=585)
 
         self.T1 = tk.Label(self.root)
         self.T1.place(x=10, y=580)
         self.T1.config(text="Character :", font=("Courier", 30, "bold"))
 
-        self.panel5 = tk.Label(self.root)  # Sentence
+        self.panel5 = tk.Label(self.root) 
         self.panel5.place(x=260, y=632)
 
         self.T3 = tk.Label(self.root)
@@ -84,16 +84,16 @@ class Application:
 
 
         self.b1=tk.Button(self.root)
-        self.b1.place(x=390,y=700)
+        self.b1.place(x=390,y=680)
 
         self.b2 = tk.Button(self.root)
-        self.b2.place(x=590, y=700)
+        self.b2.place(x=590, y=680)
 
         self.b3 = tk.Button(self.root)
-        self.b3.place(x=790, y=700)
+        self.b3.place(x=790, y=680)
 
         self.b4 = tk.Button(self.root)
-        self.b4.place(x=990, y=700)
+        self.b4.place(x=990, y=680)
 
         self.speak = tk.Button(self.root)
         self.speak.place(x=1100, y=630)
@@ -628,10 +628,7 @@ class Application:
             if self.pts[6][1] > self.pts[8][1] and self.pts[10][1] > self.pts[12][1] and self.pts[14][1] > self.pts[16][1]:
                 ch1 = 1
 
-        # -------------------------condn for 8 groups  ends
 
-        # -------------------------condn for subgroups  starts
-        #
         if ch1 == 0:
             ch1 = 'S'
             if self.pts[4][0] < self.pts[6][0] and self.pts[4][0] < self.pts[10][0] and self.pts[4][0] < self.pts[14][0] and self.pts[4][0] < self.pts[18][0]:
